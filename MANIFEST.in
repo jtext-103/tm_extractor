@@ -1,0 +1,6 @@
+include tm_extractor/__init__.py
+recursive-include tm_extractor *.py
+recursive-include tm_extractor/custom_processor *.py
+recursive-include tm_extractor/tearing_mode_extractor *.py
+include tm_extractor/tearing_mode_extractor/*.json
+include README.md
