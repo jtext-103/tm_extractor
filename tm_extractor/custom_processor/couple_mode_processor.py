@@ -90,7 +90,7 @@ class CoupleModeProcessor(BaseProcessor):
         m_n_most_forth_judge_signal.data = np.hstack((m_n_most_forth_judge_signal.data, new_columns))
         # couple_mode_data=np.zeros((len(couple_state_signal.data), 4,2,2), dtype=float)#[[m,n],[m,n]]
         # uncouple_mode_data=np.zeros((len(couple_state_signal.data), 4,2), dtype=float)#[m,n]
-        for i in range(  len(couple_state_signal.data)):
+        for i in range( len(couple_state_signal.data)):
             m_n_most_data_i = np.array([m_n_most_max_judge_signal.data[i], m_n_most_sec_judge_signal.data[i],
                                         m_n_most_third_judge_signal.data[i], m_n_most_forth_judge_signal.data[i]])
             if np.sum(mode_fre_signal.data[i]) > 0:
@@ -155,7 +155,7 @@ class CoupleModeProcessor(BaseProcessor):
                 limit = int(n_max)
             else:
                 limit = 1
-        return np.array([i for i in range(limit, 10, 1) if i / m != 1])
+        return np.array([i for i in range( 1,int(limit)+1, 1) if i / m != 1])
 
     def generate_even_numbers(self, qa, n, even_number=True):
         # limit = round(qa * n)

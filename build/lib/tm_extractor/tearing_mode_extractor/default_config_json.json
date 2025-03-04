@@ -2,11 +2,10 @@
     "jtext": {
         "cutoff_freq": 25000,
         "ma_pol_tags": [
-            "\\MA_POLC_P01", "\\MA_POLC_P02", "\\MA_POLC_P03","\\MA_POLC_P04", "\\MA_POLC_P05", "\\MA_POLC_P06",
-            "\\MA_POLB_P01", "\\MA_POLB_P02", "\\MA_POLB_P03", "\\MA_POLB_P04","\\MA_POLB_P05", "\\MA_POLB_P06",
-            "\\MA_POLD_P01", "\\MA_POLD_P02","\\MA_POLD_P03", "\\MA_POLD_P04", "\\MA_POLD_P05", "\\MA_POLD_P06",
+             "\\MA_POLC_P06","\\MA_POLC_P05", "\\MA_POLC_P04", "\\MA_POLC_P03", "\\MA_POLC_P02", "\\MA_POLC_P01",
+            "\\MA_POLB_P01", "\\MA_POLB_P02", "\\MA_POLB_P03", "\\MA_POLB_P04", "\\MA_POLB_P05", "\\MA_POLB_P06",
+            "\\MA_POLD_P01", "\\MA_POLD_P02", "\\MA_POLD_P03", "\\MA_POLD_P04", "\\MA_POLD_P05", "\\MA_POLD_P06",
             "\\MA_POLA_P01", "\\MA_POLA_P02", "\\MA_POLA_P03", "\\MA_POLA_P04", "\\MA_POLA_P05", "\\MA_POLA_P06"
-
         ],
         "ma_tor_tags": [
             "\\MA_TOR1_P10", "\\MA_TOR1_P11", "\\MA_TOR1_P12", "\\MA_TOR1_P13", "\\MA_TOR1_P15", "\\MA_TOR1_P01",

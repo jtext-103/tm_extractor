@@ -71,42 +71,54 @@ class SmallModeProcessor(BaseProcessor):
         else:
             return m,n
 
+    def check_conditions(self, arr):
+        # 检查最后两列是否全小于等于 0
+        condition1 = np.all(arr[-2:] > 0)
+
+        # 检查倒数第三列和倒数第四列是否全小于 0
+        condition2 = np.all(arr[-3:-1] > 0)
+
+        # 两个条件同时成立
+        return condition1 and condition2
+
     def small_mode(self,data_arrays,qa):
         mode_state = 0
         new_data_arrays = deepcopy(data_arrays)
+
         if all(value <= 2 for value in new_data_arrays[:, 2]):
             for index in range(len(data_arrays)):
-                if self.threshold_down <= data_arrays[index][2] < self.threshold_upp and data_arrays[index][3]>1600:
-                    new_data_arrays[index, -4:] = -1
-                    #先确定n的值
-                    if new_data_arrays[index][8]== 0 :
-                        n_number = self.round_number(new_data_arrays[index][0])
-                    else:
-                        n_number = new_data_arrays[index][8]
-                    #m_phase不为0，再根据qa确定m的值 以及m/n是否为偶数
-                    if new_data_arrays[index][7] != 0 and self.qa_condition(new_data_arrays[index][7], n_number, qa):
-                        m,n,is_even=self.check_even_after_gcd(new_data_arrays[index][7], n_number)
-                        m,n = self.mode_m_n_identical(m, n, new_data_arrays[index][0])
-                        if is_even:
-                            new_data_arrays[index][9]=m
-                            new_data_arrays[index][10]=n
+                if not self.check_conditions(data_arrays[index]):
+                    if self.threshold_down <= data_arrays[index][2] < self.threshold_upp and data_arrays[index][3]>1600:
+                        new_data_arrays[index, -4:] = -1
+                        #先确定n的值
+                        if new_data_arrays[index][8]== 0 :
+                            n_number = self.round_number(new_data_arrays[index][0])
                         else:
-                            new_data_arrays[index][11]=m
-                            new_data_arrays[index][12]=n
-                        mode_state = 1
-                    else:
-                        m_csd=self.round_number(new_data_arrays[index][6])
-                        if not(self.qa_condition(m_csd, n_number, qa)):
-                            m_csd=self.round_number(qa*n_number)
-                        m, n, is_even = self.check_even_after_gcd(m_csd, n_number)
-                        m, n = self.mode_m_n_identical(m, n, new_data_arrays[index][0])
-                        if is_even:
-                            new_data_arrays[index][9]=m
-                            new_data_arrays[index][10]=n
+                            n_number = new_data_arrays[index][8]
+                        #m_phase不为0，再根据qa确定m的值 以及m/n是否为偶数
+                        if new_data_arrays[index][7] != 0 and self.qa_condition(new_data_arrays[index][7], n_number, qa):
+                            m,n,is_even=self.check_even_after_gcd(new_data_arrays[index][7], n_number)
+                            m,n = self.mode_m_n_identical(m, n, new_data_arrays[index][0])
+                            if is_even:
+                                new_data_arrays[index][9]=m
+                                new_data_arrays[index][10]=n
+                            else:
+                                new_data_arrays[index][11]=m
+                                new_data_arrays[index][12]=n
+                            mode_state = 1
                         else:
-                            new_data_arrays[index][11]=m
-                            new_data_arrays[index][12]=n
-                        mode_state = 1
+                            m_csd=self.round_number(new_data_arrays[index][6])
+                            if not(self.qa_condition(m_csd, n_number, qa)):
+                                m_csd=self.round_number(qa*n_number)
+                            m, n, is_even = self.check_even_after_gcd(m_csd, n_number)
+                            m, n = self.mode_m_n_identical(m, n, new_data_arrays[index][0])
+                            if is_even:
+                                new_data_arrays[index][9]=m
+                                new_data_arrays[index][10]=n
+                            else:
+                                new_data_arrays[index][11]=m
+                                new_data_arrays[index][12]=n
+                            mode_state = 1
                 if mode_state == 1:
                     break
 

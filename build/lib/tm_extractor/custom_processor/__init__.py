@@ -1,4 +1,5 @@
-from.amp_judge_processor import AmpJudgeProcessor
+from .is_tearing_processor import IsTearingJudgeProcessor
+from .amp_judge_processor import AmpJudgeProcessor
 from .amp_is_tearing_processor import AmpIsTearingProcessor
 from .couple_mode_processor import CoupleModeProcessor
 from .divertor_safety_factor_processor import DivertorSafetyFactorProcessor
@@ -17,10 +18,10 @@ from .n_phase_mode_union_processor import NPhaseModeUnionProcessor
 from .odd_even_couple_judge_processor import OddEvenCoupleJudgeProcessor
 from .odd_even_processor import EvenOddProcessor
 from .plot_mode_amp_processor import PlotModeAmpProcessor
-# from .plot_shot_processor import PlotShotProcessor
 from .reorder_processor import ReOrderProcessor
 from .slice_processor import SliceProcessor
 from .slice_trim_processor import SliceTrimProcessor
 from .small_mode_processor import SmallModeProcessor
 from .specific_mode_processor import SpecificModeExtractProcessor
 from .split_amp_fre_processor import SplitAmpFreProcessor
+

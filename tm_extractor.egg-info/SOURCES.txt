@@ -21,6 +21,7 @@ tm_extractor/custom_processor/double_judge_processor.py
 tm_extractor/custom_processor/four_b_fft_processor.py
 tm_extractor/custom_processor/heyin_m_mode_csd_phase.py
 tm_extractor/custom_processor/inte_processor.py
+tm_extractor/custom_processor/is_tearing_processor.py
 tm_extractor/custom_processor/is_tm_processor.py
 tm_extractor/custom_processor/lowpass_processor.py
 tm_extractor/custom_processor/m_mode_csd_phase.py

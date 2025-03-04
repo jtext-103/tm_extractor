@@ -1,12 +1,13 @@
 import json
 from typing import List
 from jddb.extractor import BaseExtractor
-from tm_extractor.custom_processor import LowPassProcessor, InteProcessor, AmpJudgeProcessor, EvenOddProcessor, SliceProcessor, \
+from tm_extractor.custom_processor import (LowPassProcessor, InteProcessor, AmpJudgeProcessor, EvenOddProcessor, SliceProcessor, \
     SliceTrimProcessor, M_mode_th, N_mode_csd_phase, ModeFreNoisyCheck, ModeFreCheck, MNModeUnionProcessor, \
     M_mode_csd_phase, NPhaseModeUnionProcessor, FourBFFTProcessor, AmpIsTearingProcessor, ReOrderProcessor, \
     DivertorSafetyFactorProcessor, DoubleJudgeProcessor, OddEvenCoupleJudgeProcessor, \
     CoupleModeProcessor, SmallModeProcessor, IsTMProcessor, SpecificModeExtractProcessor, SplitAmpFreProcessor, \
-    PlotModeAmpProcessor
+    PlotModeAmpProcessor)
+from tm_extractor.custom_processor import IsTearingJudgeProcessor
 from jddb.processor.basic_processors import ClipProcessor, ResamplingProcessor, TrimProcessor
 from jddb.processor import Step, Pipeline
 
@@ -280,12 +281,12 @@ class TMExtractor(BaseExtractor):
                  output_tags=[["\\new_B_LFS_n_m_most_th", "\\new_B_LFS_n_m_sec_th", "\\new_B_LFS_n_m_third_th",
                                "\\new_B_LFS_n_m_forth_th"]]),
             # 33 m_csd reorder
-            Step(AmpJudgeProcessor(threshold=2), input_tags=[
-                ["\\new_B_LFS_n_m_most_th", "\\new_B_LFS_n_m_sec_th", "\\new_B_LFS_n_m_third_th",
-                 "\\new_B_LFS_n_m_forth_th"]],
-                 output_tags=[["\\mode_fre", "\\new_B_LFS_n_m_most_judge", "\\new_B_LFS_n_m_sec_judge",
-                               "\\new_B_LFS_n_m_third_judge", "\\new_B_LFS_n_m_forth_judge"]],
-                 ),
+            Step(AmpJudgeProcessor(threshold=2),input_tags=[["\\new_B_LFS_n_m_most_th", "\\new_B_LFS_n_m_sec_th", "\\new_B_LFS_n_m_third_th", "\\new_B_LFS_n_m_forth_th",
+                                                         "\\new_B_even_n_most_th","\\new_B_even_n_sec_th", "\\new_B_even_n_third_th","\\new_B_even_n_forth_th",
+                                                         "\\new_B_odd_n_most_th", "\\new_B_odd_n_sec_th","\\new_B_odd_n_third_th", "\\new_B_odd_n_forth_th"
+                                                         ]],
+            output_tags=[["\\mode_fre","\\new_B_LFS_n_m_most_judge", "\\new_B_LFS_n_m_sec_judge", "\\new_B_LFS_n_m_third_judge", "\\new_B_LFS_n_m_forth_judge"]],
+        ),
             # 34 double
             Step(DoubleJudgeProcessor(), input_tags=["\\mode_fre"], output_tags=["\\mode_undouble_fre"]),
             # 35 odd even couple
@@ -309,22 +310,16 @@ class TMExtractor(BaseExtractor):
                       "\\new_B_LFS_n2_m_forth_judge"]]),
             # 38 couple mode
             Step(CoupleModeProcessor(),
-                 input_tags=[["\\mode_fre", "\\couple_state", "\\couple_fre", "\\uncouple_fre", "\\phases_modified",
-                              "\\new_B_LFS_n2_m_most_judge", "\\new_B_LFS_n2_m_sec_judge",
-                              "\\new_B_LFS_n2_m_third_judge", "\\new_B_LFS_n2_m_forth_judge",
-                              "\\new_B_even_n_most_th", "\\new_B_even_n_sec_th", "\\new_B_even_n_third_th",
-                              "\\new_B_even_n_forth_th",
-                              "\\new_B_odd_n_most_th", "\\new_B_odd_n_sec_th", "\\new_B_odd_n_third_th",
-                              "\\new_B_odd_n_forth_th", "\\qa_1k"]],
-                 output_tags=[["\\new_B_LFS_nm_most_judge", "\\new_B_LFS_nm_sec_judge", "\\new_B_LFS_nm_third_judge",
-                               "\\new_B_LFS_nm_forth_judge",
-                               "\\couple_nm_fre", "\\uncouple_nm_fre"]]),
+                 input_tags=[["\\mode_fre","\\couple_state", "\\couple_fre", "\\uncouple_fre","\\phases_modified",
+             "\\new_B_LFS_n2_m_most_judge","\\new_B_LFS_n2_m_sec_judge","\\new_B_LFS_n2_m_third_judge","\\new_B_LFS_n2_m_forth_judge",
+             "\\new_B_even_n_most_th", "\\new_B_even_n_sec_th", "\\new_B_even_n_third_th", "\\new_B_even_n_forth_th",
+             "\\new_B_odd_n_most_th", "\\new_B_odd_n_sec_th", "\\new_B_odd_n_third_th", "\\new_B_odd_n_forth_th","\\qa_1k"]],
+                output_tags=[["\\new_B_LFS_nm_most_judge","\\new_B_LFS_nm_sec_judge","\\new_B_LFS_nm_third_judge","\\new_B_LFS_nm_forth_judge",
+             "\\couple_nm_fre", "\\uncouple_nm_fre"]]),
             # 39 Determine the mode number based on Qa.
-            Step(SmallModeProcessor(threshold_down=0.5, threshold_upp=self.bigger_threshold),
-                 input_tags=[["\\new_B_LFS_nm_most_judge", "\\new_B_LFS_nm_sec_judge",
-                              "\\new_B_LFS_nm_third_judge", "\\new_B_LFS_nm_forth_judge", "\\qa_1k"]],
-                 output_tags=[["\\new_B_th_nm_most_judge", "\\new_B_th_nm_sec_judge", "\\new_B_th_nm_third_judge",
-                               "\\new_B_th_nm_forth_judge"]]),
+            Step(SmallModeProcessor(threshold_down=0.5,threshold_upp=self.bigger_threshold),input_tags=[["\\new_B_LFS_nm_most_judge", "\\new_B_LFS_nm_sec_judge",
+            "\\new_B_LFS_nm_third_judge","\\new_B_LFS_nm_forth_judge","\\qa_1k"]],
+             output_tags=[["\\new_B_th_nm_most_judge", "\\new_B_th_nm_sec_judge", "\\new_B_th_nm_third_judge","\\new_B_th_nm_forth_judge"]]),
             # 40 Determine whether the mode is tearing based on the amplitude of the mode
             Step(IsTMProcessor(), input_tags=[
                 ["\\new_B_LFS_nm_most_judge", "\\new_B_LFS_nm_sec_judge", "\\new_B_LFS_nm_third_judge",
@@ -357,8 +352,13 @@ class TMExtractor(BaseExtractor):
                                  "\\new_B_th_nm_most_judge",
                                  "\\qa_1k"] + self.plot_signal_tags],
                  output_tags=["\\qa_1k"])]
+        steps4 = [
+            Step(IsTearingJudgeProcessor(),
+                 input_tags=[["\\new_B_th_nm_most_judge", "\\new_B_th_nm_sec_judge", "\\new_B_th_nm_third_judge",
+                              "\\new_B_th_nm_forth_judge"]],
+                 output_tags=["\\is_tearing"])]
 
-        steps = steps1 + steps2 + steps3
+        steps = steps1 + steps2 + steps3 + steps4
 
         return steps
     def make_pipeline(self):

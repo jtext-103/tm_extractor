@@ -8,6 +8,7 @@ from tm_extractor.custom_processor import LowPassProcessor, InteProcessor, AmpJu
     DivertorSafetyFactorProcessor, DoubleJudgeProcessor, OddEvenCoupleJudgeProcessor, \
     CoupleModeProcessor, SmallModeProcessor, IsTMProcessor, SpecificModeExtractProcessor, SplitAmpFreProcessor, \
     PlotModeAmpProcessor
+from tm_extractor.custom_processor import IsTearingJudgeProcessor
 
 processor_registry = {
     'ClipProcessor': ClipProcessor,
@@ -38,5 +39,6 @@ processor_registry = {
     'IsTMProcessor': IsTMProcessor,
     'SpecificModeExtractProcessor': SpecificModeExtractProcessor,
     'SplitAmpFreProcessor': SplitAmpFreProcessor,
-    'PlotModeAmpProcessor': PlotModeAmpProcessor
+    'PlotModeAmpProcessor': PlotModeAmpProcessor,
+    'IsTearingJudgeProcessor': IsTearingJudgeProcessor,
 }
