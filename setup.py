@@ -23,7 +23,7 @@ setup(
     },
     include_package_data=True,  # Include package data
     install_requires=[  # Libraries that the package depends on
-        "jddb @ git+http://120.55.75.228:23080/disruption_prediction_team/jddb.git@master#egg=jddb&subdirectory=code/JDDB",
+        "jddb @ git+https://github.com/jtext-103/jddb.git@master#egg=jddb&subdirectory=code/JDDB",
     ],
     author="Luo Runyu",  # Author's name
     author_email="lryaurora@gmail.com",  # Author's email
