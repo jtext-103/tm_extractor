@@ -1,2 +1,0 @@
-[console_scripts]
-tm_extractor = tm_extractor.run_tm_extractor:main_function
