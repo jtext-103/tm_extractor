@@ -4,3 +4,6 @@ example/raw_data/1098000/1098069.hdf5
 example/tearing_mode_data/
 example/raw_data/
 example/raw_data.rar
+tm_extractor/remove_give_example.py
+build/lib/tm_extractor/remove_give_example.py
+
