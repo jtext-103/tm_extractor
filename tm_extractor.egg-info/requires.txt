@@ -1,0 +1,1 @@
+jddb@ git+https://github.com/jtext-103/jddb.git@master#egg=jddb&subdirectory=code/JDDB
