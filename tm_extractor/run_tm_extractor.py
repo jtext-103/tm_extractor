@@ -11,14 +11,14 @@ from tm_extractor.tearing_mode_extractor.tmextractor import TMExtractor
 
 def main_function():
     parser = argparse.ArgumentParser(description='tm_extractor_running')
-    parser.add_argument('--from_json_or_yaml', type=str, required=True, default="from json",
+    parser.add_argument('--from_json_or_yaml', type=str, default="from json",
                         help='whether to load config from json or yaml, options:[from json, from yaml]')
     parser.add_argument('--from_json_to_yaml', type=bool, required=False, default=True, help='whether to save config to yaml')
     parser.add_argument('--json_file_path', type=str, required=False, default='default_path', help='file path of json config')
     parser.add_argument('--to_yaml_file_path', type=str, required=False, default='pipeline_config.yaml',
                         help='file path of yaml config')
-    parser.add_argument('--input_file_path', type=str, required=True, default="example_shotset", help='process input file path')
-    parser.add_argument('--output_file_path', type=str, required=True, default="save_shotset", help='process output file path')
+    parser.add_argument('--input_file_path', type=str,  default="example_shotset", help='process input file path')
+    parser.add_argument('--output_file_path', type=str,  default="save_shotset", help='process output file path')
     parser.add_argument('--final_plt_path', type=str, required=False, default="mode_amp_plt", help='saving plot file path')
     parser.add_argument('--processes', type=int, required=False, default=0, help='processes number')
     parser.add_argument('--save_updated_only', type=bool, required=False, default=False, help='save updated only')
