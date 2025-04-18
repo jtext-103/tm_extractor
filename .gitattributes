@@ -3,3 +3,6 @@
 *.whl filter=lfs diff=lfs merge=lfs -text
 *.tar.gz filter=lfs diff=lfs merge=lfs -text
 *.png filter=lfs diff=lfs merge=lfs -text
+dist/*.whl filter=lfs diff=lfs merge=lfs -text
+build/**/*.pyc filter=lfs diff=lfs merge=lfs -text
+tm_extractor.egg-info/* filter=lfs diff=lfs merge=lfs -text

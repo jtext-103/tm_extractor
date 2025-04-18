@@ -51,7 +51,7 @@ class TMExtractor(BaseExtractor):
 
         # Store the config file path and load the configuration
         self.config_file_path = config_file_path
-        config = self.load_config(self.config_file_path)
+        config = self.load_config()
 
         # Initialize various tags and parameters based on the configuration
         self.minor_radius_a=config[self.JTEXT][self.MINOR_RADIUS]
@@ -110,8 +110,8 @@ class TMExtractor(BaseExtractor):
         # Raw signal tags to plot
         self.plot_raw_tags = config[self.JTEXT][self.PLOT_RAW_TAGS]
 
-    def load_config(self, config_file_path):
-        with open(config_file_path, 'r', encoding='utf-8') as f:  # 使用UTF-8编码
+    def load_config(self):
+        with open(self.config_file_path, 'r', encoding='utf-8') as f:  # 使用UTF-8编码
             return json.load(f)
     def extract_steps(self) -> List[Step]:
         """

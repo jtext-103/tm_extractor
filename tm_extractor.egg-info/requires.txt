@@ -1,1 +1,3 @@
-jddb@ git+https://github.com/jtext-103/jddb.git@master#egg=jddb&subdirectory=code/JDDB
+version https://git-lfs.github.com/spec/v1
+oid sha256:a359d7d9f959115b1388cdf1f4e8ab6db8ea3856e4953f2b18f710917f0e94fc
+size 87

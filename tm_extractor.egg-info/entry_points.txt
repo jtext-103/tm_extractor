@@ -1,2 +1,3 @@
-[console_scripts]
-tm_extractor = tm_extractor.run_tm_extractor:main_function
+version https://git-lfs.github.com/spec/v1
+oid sha256:9bb9ce07515bc8b3cdb36c807499b37ed79ab4cda20ae378ed0a1af2c844f611
+size 77

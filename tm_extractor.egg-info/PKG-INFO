@@ -1,11 +1,3 @@
-Metadata-Version: 2.1
-Name: tm-extractor
-Version: 0.1
-Summary: A Software Toolkit to Extract Tearing Modes Features
-Author: Luo Runyu
-Author-email: lryaurora@gmail.com
-Classifier: Programming Language :: Python :: 3
-Classifier: License :: OSI Approved :: MIT License
-Classifier: Operating System :: OS Independent
-Requires-Python: >=3.7
-Description-Content-Type: text/markdown
+version https://git-lfs.github.com/spec/v1
+oid sha256:737bff406e6a27be4908ef45480fdb64d73dba8cc0af6c81bde973eea3f0dff2
+size 491
