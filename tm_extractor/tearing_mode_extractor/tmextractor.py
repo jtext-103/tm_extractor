@@ -51,7 +51,7 @@ class TMExtractor(BaseExtractor):
 
         # Store the config file path and load the configuration
         self.config_file_path = config_file_path
-        config = self.load_config(self.config_file_path)
+        config = self.load_config()
 
         # Initialize various tags and parameters based on the configuration
         self.minor_radius_a=config[self.JTEXT][self.MINOR_RADIUS]
