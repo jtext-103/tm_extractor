@@ -1,0 +1,31 @@
+{
+    "jtext": {
+        "cutoff_freq": 25000,
+        "ma_pol_tags": [
+            "\\MA_POLC_P01", "\\MA_POLC_P02", "\\MA_POLC_P03", "\\MA_POLC_P04", "\\MA_POLC_P05", "\\MA_POLC_P06",
+            "\\MA_POLB_P01", "\\MA_POLB_P02", "\\MA_POLB_P03", "\\MA_POLB_P04", "\\MA_POLB_P05", "\\MA_POLB_P06",
+            "\\MA_POLD_P01", "\\MA_POLD_P02", "\\MA_POLD_P03", "\\MA_POLD_P04", "\\MA_POLD_P05", "\\MA_POLD_P06",
+            "\\MA_POLA_P01", "\\MA_POLA_P02", "\\MA_POLA_P03", "\\MA_POLA_P04", "\\MA_POLA_P05", "\\MA_POLA_P06"
+        ],
+        "ma_tor_tags": [
+            "\\MA_TOR1_P10", "\\MA_TOR1_P11", "\\MA_TOR1_P12", "\\MA_TOR1_P13", "\\MA_TOR1_P15", "\\MA_TOR1_P01",
+            "\\MA_TOR1_P03", "\\MA_TOR1_P04", "\\MA_TOR1_P05", "\\MA_TOR1_P06", "\\MA_TOR1_P07", "\\MA_TOR1_P09"],
+        "plot_raw_tags": ["\\MA_POLB_P06"],
+        "bigger_threshold": 2,
+        "low_feild_tags": ["\\MA_POLB_P06"],
+        "high_feild_tags": ["\\MA_POLA_P06"],
+        "NS": 0.0689,
+        "plt_save_bfft_path": "plt_bfft",
+        "m_csd_tags": ["\\MA_POLB_P06", "\\MA_POLB_P05"],
+        "m_csd_real_angle":-15,
+        "n_csd_tags": ["\\MA_TOR1_P03", "\\MA_TOR1_P04"],
+        "n_csd_real_angle": 22.5,
+        "minor_radius_a": 0.22, "major_radius_R": 1.05,
+        "m_csd_plt_path": "plt_m_csd",
+        "n_csd_plt_path": "plt_n_csd",
+        "plt_mode_amp_path": "mode_amp",
+        "mn": [[2,1],[3,1],[4,1],[5,1]],
+        "theta_ma_pol_tags": [-172.5, -165, -150, -135, -120, -105, -75, -60, -45, -30, -15, 0, 15, 30, 45, 60, 75, 82.5, 105, 120, 135, 150, 165, 180],
+        "theta_ma_tor_tags": [-157.5, -135, -112.5, -90, -45, 0, 45, 67.5, 90, 112.5, 135, 180]
+    }
+}
