@@ -168,7 +168,7 @@ class TMExtractor(BaseExtractor):
             # #15 slice trim odd even
             Step(SliceProcessor(window_length=int(50000 * self.time_slice), overlap=0.8),
                  input_tags=self.ma_tor_tags + self.ma_pol_tags,
-                 output_tags=self.ma_pol_tags_sliced + self.ma_tor_tags_sliced),
+                 output_tags=self.ma_tor_tags_sliced + self.ma_pol_tags_sliced),
             # #16 slice trim m_csd
             Step(SliceTrimProcessor(), input_tags=[
                 self.ma_pol_tags_sliced + self.ma_tor_tags_sliced + ["\\B_odd_Inte_slice", "\\B_even_Inte_slice",

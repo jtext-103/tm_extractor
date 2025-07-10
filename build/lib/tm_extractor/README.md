@@ -21,13 +21,12 @@ This will install tm_extractor and its dependencies in the current Python enviro
 
 ## Usage
 
-Run the following command in the terminal (replace the path with your actual data location):
+   If you use the example data, you should first decompression the example_data/raw_data.zip to example_data/raw_data, the file 1093044/ should under the example_data/raw_data.
+   If you want to make a configuration file for yourself, for instance, you should add an information for `--json_file_path <your_json_name.json>` in bash.
+   Run the following command in the terminal (replace the path with your actual data location):
 
 ```bash
-    tm_extractor --from_json_or_yaml "from json" \
-                 --input_file_path "example\raw_data" \
-                 --output_file_path "example\tearing_mode_data" \
-                 --processes 1
+    tm_extractor --from_json_or_yaml "from json" --input_file_path "example\raw_data"  --output_file_path "example\tearing_mode_data" --processes 1
 ```
 
 ### Command-Line Arguments
